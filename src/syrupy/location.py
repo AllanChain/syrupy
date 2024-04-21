@@ -112,6 +112,8 @@ class PyTestLocation:
         return ".".join(self.__valid_ids(name))
 
     def matches_snapshot_name(self, snapshot_name: str) -> bool:
+        if "[" in self.testname:
+            return snapshot_name.startswith(self.snapshot_name)
         return self.__parse(self.snapshot_name) == self.__parse(snapshot_name)
 
     def matches_snapshot_location(self, snapshot_location: str) -> bool:

@@ -96,12 +96,13 @@ def test_location_properties(
                 "test_file/extra/1.snap",
                 "__snapshots__/test_file/extra/even/more/1.snap",
             ),
+            ("TestClass.method_name[1]",),
             (
+                "method_name",
                 "TestClass.method_name",
-                "TestClass.method_name[1]",
                 "TestClass.method_name.1",
+                "TestClass.method_name[2]",
             ),
-            ("method_name", "TestClass.method_names"),
         ),
     ),
 )

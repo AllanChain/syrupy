@@ -72,3 +72,13 @@ def test_skipped_snapshots_update(run_testcases):
     result = testdir.runpytest("-v", "--snapshot-update")
     result.stdout.re_match_lines(r"1 snapshot passed\.$")
     assert result.ret == 0
+
+
+def test_not_run_snapshots_update(run_testcases):
+    testdir, testcases = run_testcases
+    pyfile_content = "\n\n".join([testcases["used"], testcases["not-skipped"]])
+    testdir.makepyfile(test_file=pyfile_content)
+
+    result = testdir.runpytest("-v", "-k", "not skipped", "--snapshot-update")
+    result.stdout.re_match_lines(r"1 snapshot passed\.$")
+    assert result.ret == 0
